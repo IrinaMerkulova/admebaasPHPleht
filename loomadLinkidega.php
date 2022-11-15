@@ -42,10 +42,10 @@ if(isset($_REQUEST['lisamisvorm']) && !empty($_REQUEST["nimi"])){
     $paring->execute();
 
         while($paring->fetch()) {
-        echo "<li><a href='?id=$id'>$nimi</a></li>";
+        echo "<li><a href='$_SERVER[PHP_SELF]?id=$id'>$nimi</a></li>";
         }
         echo "</ul>";
-        echo "<a href='?lisaloom=jah'>Lisa Loom</a>";
+        echo "<a href='$_SERVER[PHP_SELF]?lisaloom=jah'>Lisa Loom</a>";
     ?>
 
 </div>
@@ -67,14 +67,14 @@ SELECT loomanimi, vanus, pilt, silmadevarv FROM loomad WHERE id=?");
             echo "</div>";
 
         }
-        echo "<a href='?kustuta=$id'>Kustuta</a>";
+        echo "<a href='$_SERVER[PHP_SELF]?kustuta=$id'>Kustuta</a>";
     }
 
 
         if(isset($_REQUEST["lisaloom"])){
             ?>
     <h2>Uue looma lisamine</h2>
-    <form name="uusloom" method="post" action="?">
+    <form name="uusloom" method="post" action="<?=$_SERVER["PHP_SELF"] ?>">
     <input type="hidden" name="lisamisvorm" value="jah">
     <input type="text" name="nimi" placeholder="Looma nimi">
     <br>
